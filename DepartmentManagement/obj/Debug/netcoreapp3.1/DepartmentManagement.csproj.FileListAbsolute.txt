@@ -1,0 +1,13 @@
+C:\Users\ACER\Desktop\DepartmentManagement\DepartmentManagement\obj\Debug\netcoreapp3.1\DepartmentManagement.csproj.AssemblyReference.cache
+C:\Users\ACER\Desktop\DepartmentManagement\DepartmentManagement\obj\Debug\netcoreapp3.1\DepartmentManagement.AssemblyInfoInputs.cache
+C:\Users\ACER\Desktop\DepartmentManagement\DepartmentManagement\obj\Debug\netcoreapp3.1\DepartmentManagement.AssemblyInfo.cs
+C:\Users\ACER\Desktop\DepartmentManagement\DepartmentManagement\obj\Debug\netcoreapp3.1\DepartmentManagement.csproj.CoreCompileInputs.cache
+C:\Users\ACER\Desktop\DepartmentManagement\DepartmentManagement\bin\Debug\netcoreapp3.1\DepartmentManagement.exe
+C:\Users\ACER\Desktop\DepartmentManagement\DepartmentManagement\bin\Debug\netcoreapp3.1\DepartmentManagement.deps.json
+C:\Users\ACER\Desktop\DepartmentManagement\DepartmentManagement\bin\Debug\netcoreapp3.1\DepartmentManagement.runtimeconfig.json
+C:\Users\ACER\Desktop\DepartmentManagement\DepartmentManagement\bin\Debug\netcoreapp3.1\DepartmentManagement.runtimeconfig.dev.json
+C:\Users\ACER\Desktop\DepartmentManagement\DepartmentManagement\bin\Debug\netcoreapp3.1\DepartmentManagement.dll
+C:\Users\ACER\Desktop\DepartmentManagement\DepartmentManagement\bin\Debug\netcoreapp3.1\DepartmentManagement.pdb
+C:\Users\ACER\Desktop\DepartmentManagement\DepartmentManagement\obj\Debug\netcoreapp3.1\DepartmentManagement.dll
+C:\Users\ACER\Desktop\DepartmentManagement\DepartmentManagement\obj\Debug\netcoreapp3.1\DepartmentManagement.pdb
+C:\Users\ACER\Desktop\DepartmentManagement\DepartmentManagement\obj\Debug\netcoreapp3.1\DepartmentManagement.genruntimeconfig.cache
