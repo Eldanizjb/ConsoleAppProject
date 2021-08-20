@@ -26,30 +26,23 @@ namespace DepartmentManagement
                 switch (ans)
                 {
                     case "1.1":
-                        ShowGroups(ref courseService);
                         break;
                     case "1.2":
-                        AddGroup(ref courseService);
                         break;
                     case "1.3":
-                        EditGroup(ref courseService);
                         break;
                     case "2.1":
-                        ShowStudentsOfGroup(ref courseService);
                         break;
                     case "2.2":
-                        ShowAllStudents(ref courseService);
                         break;
                     case "2.3":
-                        ShowSearchedStudents(ref courseService);
                         break;
                     case "2.4":
-                        AddStudent(ref courseService);
                         break;
                     case "3":
                         return;
                     default:
-                        Console.WriteLine("Secdiyiniz emeliyyat movcud deyil, tekrar secin!!!");
+                        Console.WriteLine("Duzgun secim etmeyinizi xahis edirik!");
                         break;
                 }
 

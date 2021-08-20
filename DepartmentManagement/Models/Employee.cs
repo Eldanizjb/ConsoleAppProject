@@ -46,10 +46,9 @@ namespace DepartmentManagement.Models
         {
             return $"Ishcinin: nomresi;-{EmployeeNo }adı ve soyadı;-{FullName}vezifesi;-{Position}Emek haqqi;-{Salary}teyin olundugu bolme;-{DepartamentName}";
         }
-
         private bool CheckPosition(string position)
         {
-            if (position.Length > 2)
+            if (position.Length < 2)
                 return false;
 
             foreach (char item in position)
