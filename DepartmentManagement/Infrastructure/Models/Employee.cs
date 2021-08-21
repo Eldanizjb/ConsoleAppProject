@@ -6,7 +6,7 @@ namespace DepartmentManagement.Models
 {
     class Employee
     {
-        public Employee(string position,double salary)
+        public Employee(string position)
         {
             Position = position;
 
@@ -16,7 +16,6 @@ namespace DepartmentManagement.Models
         private static int _counter = 1000;
         public string EmployeeNo { get; set; }
         public string FullName { get; set; }
-
         private string _position;
         public string Position 
         {
@@ -32,32 +31,42 @@ namespace DepartmentManagement.Models
                 }
                 else
                 {
-                    Console.WriteLine("Vezife Daxil Edilmeyib");
-                    Console.WriteLine("----------------------");
+                    Console.WriteLine("      Vezife Daxil Edilmeyib");
+                    Console.WriteLine("======================================");
                     Console.WriteLine("Vezife herifle ve ikiden cox olmalidir");
                     return;
                 }
             } 
         }
-        public double Salary { get; set; }
-        public string DepartamentName { get; set; }
-
+        private double _salary;
+        public double Salary
+        {
+            get
+            {
+                return _salary;
+            }
+            set
+            {
+                if (value > 250)
+                {
+                    _salary = value;
+                }else
+                 Console.WriteLine("Emek haqqi 250 azn-den ashagi ola bilmez");
+            }
+        }
+        public string CheckNum { get; set; }
+        public string DepartamentName { get; set; }                 
         public override string ToString()
         {
             return $"Ishcinin: nomresi;-{EmployeeNo }adı ve soyadı;-{FullName}vezifesi;-{Position}Emek haqqi;-{Salary}teyin olundugu bolme;-{DepartamentName}";
         }
-        private bool CheckPosition(string position)
+        private bool CheckPosition(string Name)
         {
-            if (position.Length < 2)
-                return false;
-
-            foreach (char item in position)
+            foreach (char letter in Name)                                                             /////////////// deligate
             {
-                if (!Char.IsLetter(item))
+                if ((!Char.IsLetter(letter)) && (Name.Length < 2))
                     return false;
-            }
-            return true;
+            }return true;
         }
     }
-
 }
