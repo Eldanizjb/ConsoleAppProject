@@ -4,24 +4,23 @@ using System.Text;
 
 namespace DepartmentManagement.Models
 {
-    class Employee
-    {
-        public Employee()
+    class Employee                                                                      {
+        public Employee()                                                           
         {          
-            _counter++;
-            EmployeeNo = DepartamentName.Substring(0, 2).ToUpper() + _counter; 
+            _counter++;                                                                       
+            EmployeeNo = DepartamentName.Substring(0, 2).ToUpper() + _counter;      // The first two letters of the section will be added in front of employee's number
         }
-        private static int _counter = 1000;
-        public string EmployeeNo { get; set; }
+        private static int _counter = 1000;                                                // emlloyee's number will begin 1000 number
+        public string EmployeeNo { get; set; }                                    
         public string FullName { get; set; }
-        private string _position;
-        public string Position 
+        private string _position;                                                                                                 
+        public string Position                                                   
         {
             get {
                 return _position; 
             }
             set {
-                if (CheckPosition(value))
+                if (CheckPosition(value))                                  // CheckPosition method was used for position consisted of no less than two letters
                 {
                     _position = value;
                 }
@@ -35,7 +34,7 @@ namespace DepartmentManagement.Models
             } 
         }
         private double _salary;
-        public double Salary
+        public double Salary                                                 
         {
             get
             {
@@ -43,7 +42,7 @@ namespace DepartmentManagement.Models
             }
             set
             {
-                if (value > 250)
+                if (value > 250)                                                                      
                 {
                     _salary = value;
                 }else
@@ -52,11 +51,11 @@ namespace DepartmentManagement.Models
         }
        public string CheckNum { get; set; }
         public string DepartamentName { get; set; }                 
-        public override string ToString()
+        public override string ToString()                                       // call for return informations
         {
             return $"Ishcinin: nomresi;-{EmployeeNo }adı ve soyadı;-{FullName}vezifesi;-{Position}Emek haqqi;-{Salary}teyin olundugu bolme;-{DepartamentName}";
         }
-        private bool CheckPosition(string Name)
+        private bool CheckPosition(string Name)                                  // This metod for position
         {
             if (Name.Length >= 2)
             {

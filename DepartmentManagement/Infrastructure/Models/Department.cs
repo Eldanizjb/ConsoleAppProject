@@ -19,7 +19,7 @@ namespace DepartmentManagement.Models
             }
             set
             {
-                if (CheckName(value))
+                if (CheckName(value))                  // CheckPosition method was used for position consisted of no less than two letters
                 {
                     _name = value;
                 }
@@ -38,7 +38,7 @@ namespace DepartmentManagement.Models
             }
             set
             {
-                if (value >= 1)
+                if (value >= 1)                                                   //limit for employees in the sections                    
                 {
                     _workerLimit = value;
                 }
@@ -48,7 +48,7 @@ namespace DepartmentManagement.Models
                 }
             }
         }
-        private double _salaryLimit;
+        private double _salaryLimit;                                              
         public double SalaryLimit
         {
             get
@@ -57,7 +57,7 @@ namespace DepartmentManagement.Models
             }
             set
             {
-                if (value > 250)
+                if (value > 250)                                                   // limit for employee's salary
                 {
                     _salaryLimit = value;
                 }
@@ -68,14 +68,15 @@ namespace DepartmentManagement.Models
             }
         }
         private List<Employee> _employees;
-        public List<Employee> Employees{
+        public List<Employee> Employees                                   // greated for will use other classes
+        {          
 
             get
             {
                 return _employees;
             }
         } 
-        public double CalcSalaryAverage()
+        public double CalcSalaryAverage()                                // This metod for find average salary of employees
         {
             double SumSalary = 0;
             double AvarageSalary = 0;
@@ -94,7 +95,7 @@ namespace DepartmentManagement.Models
             }
             return AvarageSalary;
         }
-        private bool CheckName(string Name)
+        private bool CheckName(string Name)                                // This metod for position
         {
             if (Name.Length >= 2)
             {

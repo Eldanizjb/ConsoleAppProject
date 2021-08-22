@@ -11,7 +11,7 @@ namespace DepartmentManagement
         private static HumanResourceManagerService _newHumanResourse = new HumanResourceManagerService();
         public Program()
         {
-              _newHumanResourse = new HumanResourceManagerService();
+            _newHumanResourse = new HumanResourceManagerService();
         }
         static void Main(string[] args)
         {
@@ -81,62 +81,96 @@ namespace DepartmentManagement
                         break;
                 }
             } while (true);
-        }                                //complected full
+        }                                                             
         static void ShowDepartament(ref HumanResourceManagerService departamentService)
         {
+            Console.WriteLine("------Departameantlerin siyahisini gostermesi----------");
+
             foreach (var item in departamentService.GetDepartments())
             {
                 Console.WriteLine($"Ishcinin adi: {item.Name} - Ishcilerin sayi: {item.WorkerLimit}- Ishcilerin ortalama maaslari: {item.CalcSalaryAverage()}");
             }
-        }                              //complected full  1
+        }      //  Find all Departaments information. Use metod GetDepartments                        
         static void AddDepartment(ref HumanResourceManagerService departamentService)
         {
-            Console.WriteLine("Departamentin Adini Daxil Edin:");
-            string departamentName = Console.ReadLine();
-            Console.WriteLine("Ishcilerin Emek haqqin Daxil Et");
-            string Salary = Console.ReadLine();
-            double departamentSalary;
-            while (!double.TryParse(Salary, out departamentSalary))
+            Console.WriteLine("---------Departamenetin yaradılması-----------");
+            Department newDepartment = new Department();
+            bool check = false;
+            while (!check)
             {
-                Console.WriteLine("Ishcilerin Emek haqqin Duzgun Daxil Et");
-                Salary = Console.ReadLine();
-                double.TryParse(Salary, out departamentSalary);
-            }
-            Console.WriteLine("Ishcilerin Sayini Daxil Et");
-            string count = Console.ReadLine();
-            int employeeCount;
-            while (!int.TryParse(count, out employeeCount))
-            {
-                Console.WriteLine("Iscilerin Sayini Duzgun Daxil Et");
-                count = Console.ReadLine();
-                int.TryParse(count, out employeeCount);
-            }
+                Console.WriteLine("Yeni Departmentin adını daxil edin");
+                string DepartName = Console.ReadLine();
 
-            Department department = new Department
-            {
-                Name = departamentName,
-                WorkerLimit = employeeCount,
-                SalaryLimit = departamentSalary,
-            };
-            departamentService.AddDepartment(department);
+                Console.WriteLine("Departamentdə statda olacaq isci sayını daxil edin");
+                string limitEmployee = Console.ReadLine();
+                int limitWorker;
 
-        }                                 //complected full 4       
+                while (!int.TryParse(limitEmployee, out limitWorker))
+                {
+                    Console.WriteLine("İsci sayını bir ve birden cox daxil edin");
+                    limitEmployee = Console.ReadLine();
+                    int.TryParse(limitEmployee, out limitWorker);
+                }
+                Console.WriteLine("Departamentdə statda olacaq isci əmək haqqını daxil edin");
+
+                string limitSalary = Console.ReadLine();
+                int countSalary;
+
+                while (!int.TryParse(limitSalary, out countSalary))
+                {
+                    Console.WriteLine("İsci əmək haqqı 250 AZN-dən az ola bilməz");
+                    limitSalary = Console.ReadLine();
+                    int.TryParse(limitSalary, out countSalary);
+                }
+                newDepartment.Name = DepartName;
+                newDepartment.SalaryLimit = countSalary;
+                newDepartment.WorkerLimit = limitWorker;
+                departamentService.AddDepartment(newDepartment);
+                check = true;
+
+            }
+        } //  Added Departament. Chek from while for take true information. Use metod AddDepartments, Departament 
         static void EditDepartment(ref HumanResourceManagerService departamentService)
         {
-            Department department = new Department();
-            Console.Write("Deyiseceyiniz Departamentin adını daxil edin: ");
-            string nameDepartament = Console.ReadLine();
-            Console.WriteLine();
+            Console.WriteLine("--------------Departmanetde deyisikliklər---------------");
 
-            if (nameDepartament.ToLower().Equals(department.Name.ToLower()))
+            Console.WriteLine("Əlavələr edəcəyiniz və ya dəyişəcəyiniz Departamentin adını daxil edin");
+            string name = Console.ReadLine();
+
+            Department changedepartment = departamentService.Departments.Find(h => h.Name.ToLower() == name.ToLower());
+            if (changedepartment == null)
             {
-                Console.Write("Departamentin yeni adını daxil edin: ");
-                string changingName = Console.ReadLine();
-                department.Name = changingName;
-
-                departamentService.EditDepartaments(nameDepartament, department);
+                Console.WriteLine("Sistemdə Daxil etdiyiniz adda department tapılmadı.");
+                return;
             }
-        }                                //complected
+            Console.WriteLine($"Departmentin adi: { changedepartment.Name} Deparmentin ortalama əmək haqqı: { changedepartment.SalaryLimit} Ştat üzrə işçi: {changedepartment.WorkerLimit}");
+            Console.WriteLine("Departmentin yeni adını daxil edin:");
+            string newDepartament = Console.ReadLine();
+            Console.WriteLine("Departamentdə statda olacaq isci əmək haqqını daxil edin");
+            string salaryLimit = Console.ReadLine();
+            int limitSalary;
+            while (!int.TryParse(salaryLimit, out limitSalary))
+            {
+                Console.WriteLine("Departamentdə statda olacaq isci əmək haqqını daxil edin:");
+                salaryLimit = Console.ReadLine();
+                int.TryParse(salaryLimit, out limitSalary);
+            }
+            Console.WriteLine("İsci əmək haqqı 250 AZN-dən az ola bilməz");
+
+            string limitEmployee = Console.ReadLine();
+            int limitWorker;
+            while (!int.TryParse(limitEmployee, out limitWorker))
+            {
+                Console.WriteLine("İsci sayını bir ve birden cox daxil edin");
+                limitEmployee = Console.ReadLine();
+                int.TryParse(limitEmployee, out limitWorker);
+            }
+            changedepartment.Name = newDepartament;
+            changedepartment.SalaryLimit = limitSalary;
+            changedepartment.WorkerLimit = limitWorker;
+
+            Console.WriteLine("Deyisiklikler bitdi.");
+        }    //  Modifie and change Departament. Finde and Chek information. Use metod EditDepartments, Departament 
         static void ShowAllEmployee(ref HumanResourceManagerService departamentService)
             {
             Console.WriteLine("\n=============Ishcilerin siyahisi==================");
@@ -154,18 +188,12 @@ namespace DepartmentManagement
                 Console.WriteLine("Sistemde ishci yoxdur!");
                 Console.WriteLine("===============================\n");
             }
-        }                               //complected 5
+        } //  Shows all employees information in Departaments. Use Employee
         static void ShowEmployeesOfDepartament(ref HumanResourceManagerService departamentService)
             {
             Console.Write("Iscilerinin siyahisini istediyiniz Departamentin adini daxil edin: ");
             string departmentName = Console.ReadLine();
             Console.WriteLine();
-
-            if (departamentService.EditDepartaments == null)
-            {
-                Console.WriteLine($"{group} nomreli qrup movcud deyil!");
-                return;
-            }
 
             foreach (Employee item in _newHumanResourse.Employees)
             {
@@ -173,11 +201,13 @@ namespace DepartmentManagement
                 {
                     Console.WriteLine($"Nomres{ item.CheckNum} Adi ve SoyAdi{ item.FullName} Vezifesi{ item.Position} Emek haqqi{ item.Salary}");
                 }
+                Console.WriteLine($"{departmentName } departamenti movcud deyil!");
             }
-        }
+        } //  Shows employees information in Departament which we will search. Use Employee and Departament
         static void AddEmployee(ref HumanResourceManagerService departamentService)
             {
-                Employee employee = new Employee();
+            Console.WriteLine("----------Isci elave edilməsi---------");
+            Employee employee = new Employee();
 
                 Console.WriteLine("Yeni ishci barede melumatlari elave edin ");
 
@@ -206,11 +236,15 @@ namespace DepartmentManagement
                     Console.WriteLine("Zehmet olmasa reqem daxil edin");
                     inputSalary = Console.ReadLine();
                 }
+
                 employee.Salary = salary;
-                employee.CheckNum = employee.EmployeeNo;
-            }                                 //complected full  2
+            employee.CheckNum = employee.CheckNum;
+               departamentService.AddEmployee(employee,departmentName);      
+        }      //  Added Emploee. Use metod AddDepartments Departament and Employee
         static void EditEmployee(ref HumanResourceManagerService departamentService)
-            {
+        {
+            Console.WriteLine("-----------Isci uzerinde deyisiklik edilməsi--------------");
+
             Employee employee = new Employee();
             Console.Write("Deyiseceyiniz Iscinin adını daxil edin: ");
             string nameEmployee = Console.ReadLine();
@@ -240,16 +274,18 @@ namespace DepartmentManagement
                 }
                 employee.Salary = salary;
                 employee.CheckNum = employee.EmployeeNo;
-                //departamentService.EditEmploye(employee, nameEmployee);
+                departamentService.EditEmploye(employee, nameEmployee);
             }
-        }
+        }    //  Modifie and change Employee. Finde and Chek information. Use metod EditEmployee, Emploee 
         static void RemoveEmployee(ref HumanResourceManagerService departamentService)
-            {
-                Console.WriteLine("***Melumatlarin silmek istediyiniz işçinin nömrəsin yazin***");
+        {
+            Console.WriteLine("-------------Departamentden iscinin silinmesi------------- ");
+            Console.WriteLine("***Melumatlarin silmek istediyiniz işçinin nömrəsin yazin***");
                 string no = Console.ReadLine();
                 string departmentName = Console.ReadLine();
                 _newHumanResourse.RemoveEmployee(no, departmentName);
-            }                               //complected full  3
+        }  //  Delet Employee. Finde and Chek information. Use metod RemoveEmployee, Emploee                             
     }
 }
+
 

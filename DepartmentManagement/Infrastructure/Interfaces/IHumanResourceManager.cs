@@ -7,12 +7,12 @@ namespace DepartmentManagement.Interfaces
 {
     interface IHumanResourceManager
     {
-        List<Department> Departments { get; }
-        void AddDepartment(Department department);
-        List<Department> GetDepartments();
+        public List<Department> Departments { get; }                                             // these are interfaces for use Services
+        public void AddDepartment(Department department);                             
+        public List<Department> GetDepartments();
         public void EditDepartaments(string ancientName, Department newName);
-        void AddEmployee(Employee employee, string deartamentName);
-        void RemoveEmployee(string rangeNo, string departamentName);
-        List<Employee> EditEmploye(string rangeNo, string fullName, double salary, string position);
+        public void AddEmployee(Employee employee, string deartamentName);
+        public void RemoveEmployee(string rangeNo, string departamentName);
+        public List<Employee> EditEmploye(string rangeNo, string fullName, double salary, string position);
     }
 }
