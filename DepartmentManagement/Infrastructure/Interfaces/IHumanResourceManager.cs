@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using DepartmentManagement.Models;
 
-
 namespace DepartmentManagement.Interfaces
 {
     interface IHumanResourceManager
@@ -15,8 +14,5 @@ namespace DepartmentManagement.Interfaces
         void AddEmployee(Employee employee, string deartamentName);
         void RemoveEmployee(string rangeNo, string departamentName);
         List<Employee> EditEmploye(string rangeNo, string fullName, double salary, string position);
-       
-
     }
-
 }

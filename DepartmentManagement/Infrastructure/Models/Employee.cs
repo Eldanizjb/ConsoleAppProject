@@ -6,10 +6,8 @@ namespace DepartmentManagement.Models
 {
     class Employee
     {
-        public Employee(string position)
-        {
-            Position = position;
-
+        public Employee()
+        {          
             _counter++;
             EmployeeNo = DepartamentName.Substring(0, 2).ToUpper() + _counter; 
         }
@@ -19,11 +17,9 @@ namespace DepartmentManagement.Models
         private string _position;
         public string Position 
         {
-
             get {
                 return _position; 
             }
-
             set {
                 if (CheckPosition(value))
                 {
@@ -54,7 +50,7 @@ namespace DepartmentManagement.Models
                  Console.WriteLine("Emek haqqi 250 azn-den ashagi ola bilmez");
             }
         }
-        public string CheckNum { get; set; }
+       public string CheckNum { get; set; }
         public string DepartamentName { get; set; }                 
         public override string ToString()
         {
@@ -62,10 +58,16 @@ namespace DepartmentManagement.Models
         }
         private bool CheckPosition(string Name)
         {
-            foreach (char letter in Name)                                                             /////////////// deligate
+            if (Name.Length >= 2)
             {
-                if ((!Char.IsLetter(letter)) && (Name.Length < 2))
-                    return false;
+                return false;
+            }
+            foreach (char item in Name)                                                            
+            {
+                if (!Char.IsLetter(item))
+                {
+                    return false; 
+                } 
             }return true;
         }
     }

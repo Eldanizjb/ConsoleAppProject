@@ -46,7 +46,6 @@ namespace DepartmentManagement.Models
                 {
                     Console.WriteLine("Ishcilerin sayi birden cox olmalidir");
                 }
-
             }
         }
         private double _salaryLimit;
@@ -75,7 +74,7 @@ namespace DepartmentManagement.Models
             {
                 return _employees;
             }
-        }                       
+        } 
         public double CalcSalaryAverage()
         {
             double SumSalary = 0;
@@ -84,24 +83,31 @@ namespace DepartmentManagement.Models
             foreach (var employee in Employees)
             {
                 SumSalary += employee.Salary;
-
-                    }
+            }
             if (Employees.Count != 0)
             {
                 AvarageSalary = SumSalary / Employees.Count;
             }
-            else { return 0; }
-
-
+            else 
+            {
+                return 0; 
+            }
             return AvarageSalary;
         }
-        private bool CheckName(string name)
+        private bool CheckName(string Name)
         {
-            foreach (char letter in Name)                                                             /////////////// deligate
+            if (Name.Length >= 2)
             {
-                if ((!Char.IsLetter(letter)) && (Name.Length< 2))
+                return false;
+            }
+            foreach (char item in Name)
+            {
+                if (!Char.IsLetter(item))
+                {
                     return false;
-            }return true;
+                }
+            }
+            return true;
         }
     }
 }
