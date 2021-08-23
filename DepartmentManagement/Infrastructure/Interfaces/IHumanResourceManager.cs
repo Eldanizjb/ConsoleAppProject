@@ -13,6 +13,6 @@ namespace DepartmentManagement.Interfaces
         public void EditDepartaments(string ancientName, Department newName);
         public void AddEmployee(Employee employee, string deartamentName);
         public void RemoveEmployee(string rangeNo, string departamentName);
-        public List<Employee> EditEmploye(string rangeNo, string fullName, double salary, string position);
+        public void EditEmploye(string rangeNo, string fullName, double salary, string position, Employee employee );
     }
 }

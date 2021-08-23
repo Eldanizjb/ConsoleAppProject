@@ -4,10 +4,18 @@ using System.Text;
 
 namespace DepartmentManagement.Models
 {
-    class Employee                                                                      {
-        public Employee()                                                           
-        {          
-            _counter++;                                                                       
+    class Employee                                                                      
+    {
+
+        public Employee()
+        {
+   
+        }
+          
+        public Employee (string section) : this()                                                          
+        {
+            DepartamentName = section;
+            _counter++;      
             EmployeeNo = DepartamentName.Substring(0, 2).ToUpper() + _counter;      // The first two letters of the section will be added in front of employee's number
         }
         private static int _counter = 1000;                                                // emlloyee's number will begin 1000 number
@@ -16,7 +24,8 @@ namespace DepartmentManagement.Models
         private string _position;                                                                                                 
         public string Position                                                   
         {
-            get {
+            get
+            {
                 return _position; 
             }
             set {
@@ -29,7 +38,6 @@ namespace DepartmentManagement.Models
                     Console.WriteLine("      Vezife Daxil Edilmeyib");
                     Console.WriteLine("======================================");
                     Console.WriteLine("Vezife herifle ve ikiden cox olmalidir");
-                    return;
                 }
             } 
         }
@@ -45,11 +53,12 @@ namespace DepartmentManagement.Models
                 if (value > 250)                                                                      
                 {
                     _salary = value;
-                }else
+                }
+                else
                  Console.WriteLine("Emek haqqi 250 azn-den ashagi ola bilmez");
             }
         }
-       public string CheckNum { get; set; }
+        public string CheckNum { get; set; }
         public string DepartamentName { get; set; }                 
         public override string ToString()                                       // call for return informations
         {
@@ -57,7 +66,7 @@ namespace DepartmentManagement.Models
         }
         private bool CheckPosition(string Name)                                  // This metod for position
         {
-            if (Name.Length >= 2)
+            if (Name.Length < 2)
             {
                 return false;
             }

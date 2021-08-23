@@ -7,8 +7,9 @@ namespace DepartmentManagement.Models
     class Department
     {
         public Department()
-        { 
-        
+        {
+            _employees = new List<Employee>();
+
         }
         private string _name;
         public string Name
@@ -38,7 +39,7 @@ namespace DepartmentManagement.Models
             }
             set
             {
-                if (value >= 1)                                                   //limit for employees in the sections                    
+                if (value > 1)                                                   //limit for employees in the sections                    
                 {
                     _workerLimit = value;
                 }
@@ -79,25 +80,21 @@ namespace DepartmentManagement.Models
         public double CalcSalaryAverage()                                // This metod for find average salary of employees
         {
             double SumSalary = 0;
-            double AvarageSalary = 0;
-           
-            foreach (var employee in Employees)
+                       
+            foreach (Employee employee in Employees)
             {
                 SumSalary += employee.Salary;
             }
-            if (Employees.Count != 0)
-            {
-                AvarageSalary = SumSalary / Employees.Count;
-            }
-            else 
-            {
-                return 0; 
-            }
-            return AvarageSalary;
+            SumSalary /= Employees.Count;
+             return SumSalary;
+        }
+        public override string ToString()
+        {
+            return $"{Name} {Employees.Count} {CalcSalaryAverage()}";
         }
         private bool CheckName(string Name)                                // This metod for position
         {
-            if (Name.Length >= 2)
+            if (Name.Length < 2)
             {
                 return false;
             }
@@ -110,5 +107,6 @@ namespace DepartmentManagement.Models
             }
             return true;
         }
+       
     }
 }
