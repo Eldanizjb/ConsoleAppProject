@@ -76,7 +76,8 @@ namespace DepartmentManagement.Models
             {
                 return _employees;
             }
-        } 
+        }
+        #region Metods for retun, check Salary and Name
         public double CalcSalaryAverage()                                // This metod for find average salary of employees
         {
             double SumSalary = 0;
@@ -107,6 +108,6 @@ namespace DepartmentManagement.Models
             }
             return true;
         }
-       
+        #endregion
     }
 }

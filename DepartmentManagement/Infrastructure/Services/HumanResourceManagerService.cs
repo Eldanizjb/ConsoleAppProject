@@ -8,40 +8,18 @@ namespace DepartmentManagement.Services
 {
     class HumanResourceManagerService : IHumanResourceManager
     {
-        public HumanResourceManagerService()                       //
+        public HumanResourceManagerService()                       
         {
-            _departments = new List<Department>();                 //
-            _employees = new List<Employee>();
+            _departments = new List<Department>();                 
         }
-        private List<Department> _departments;                       //       
-        public List<Department> Departments => _departments;        //
-        //{
-        //    get 
-        //    {
-        //        return _departments;
-        //    }
-        //}
-        private List<Employee> _employees;             
-        public List<Employee> Employees => _employees;             
-        //{
-        //    get 
-        //    {
-        //        return _employees;
-        //    }
-        //}
-        public void AddDepartment(Department department)                     //
+        private List<Department> _departments;                              
+        public List<Department> Departments => _departments;       
+        //public List<Employee> Employees => _employees;
+        //private List<Employee> _employees;
+        #region Metods at IHumanResourceManeger.cs for Program.cs
+        public void AddDepartment(Department department)                     
         {
-            //Department section = new Department();
-            //foreach (var item in Departments)
-            //{
-            //    if (item == section)
-            //    {
-            //        Console.WriteLine($"{item} Departament movcuddur!");
-            //        Console.WriteLine("Duzgun departament daxil edin");
-            //        return;
-            //    }
-            //}
-            _departments.Add(department);
+           _departments.Add(department);
         }                             // Added new Departament create new and chek old Departamens and Departament classes
         public void EditEmploye(string rangeNo, string fullName, double salary, string position, Employee employee)
         {
@@ -57,7 +35,6 @@ namespace DepartmentManagement.Services
                     else
                     {
                         Console.WriteLine($"Ishcinin adi ve soyadi:{ list.Employees[item].FullName}\nIscinin vezifesi:{ list.Employees[item].Position}\nIscinin emek haqqi:{ list.Employees[item].Salary}");
-                        editEmployee.FullName = employee.FullName;
                         editEmployee.Salary = employee.Salary;
                         editEmployee.Position = employee.Position;
                         return;
@@ -68,17 +45,35 @@ namespace DepartmentManagement.Services
         public void AddEmployee(Employee employee, string deartamentName)                                     
         {
             Employee newemployee = new Employee();
-            newemployee.EmployeeNo = employee.EmployeeNo;
+          
             newemployee.FullName = employee.FullName;
-            newemployee.Salary = employee.Salary;
             newemployee.Position = employee.Position;
+            newemployee.Salary = employee.Salary;
+            newemployee.EmployeeNo = employee.EmployeeNo;
             foreach (Department item in Departments)
             {
                 if (item.Name.ToLower() == deartamentName.ToLower())
                 {
-                    item.Employees.Add(newemployee);
+                    if (item.WorkerLimit > item.Employees.Count)
+                    {
+                        if (newemployee.Salary > 250)
+                        {
+                            if (newemployee.Position.Length >= 2)
+                            {
+                                    item.Employees.Add(newemployee);
+                                    Console.WriteLine("Isci elave olundu.");
+                            }
+                        }
+                    }
+                    
+                    else
+                    {
+                        Console.WriteLine($"{item.Name}  departamentde vakant vezife yoxdur");
+                    }
                 }
             }
+
+
         }//Added Employee's to Departament use Employee and Departament classes
         public List<Department> GetDepartments()
         {
@@ -105,7 +100,7 @@ namespace DepartmentManagement.Services
                 {
                     for (int item = 0; item < list.Employees.Count; item++)
                     {
-                        if (list.Employees[item].EmployeeNo != rangeNo)
+                        if (list.Employees[item].EmployeeNo == rangeNo)
                         {
                             list.Employees.Remove(list.Employees[item]);
                             Console.WriteLine("ishci siyahidan silindi:)");
@@ -122,6 +117,7 @@ namespace DepartmentManagement.Services
                 }
             } // Find check Employee and Departament numbers. If true remove this Employee 
         }
+        #endregion
     }
 }
 
